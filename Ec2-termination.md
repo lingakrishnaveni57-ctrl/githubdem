@@ -20,28 +20,25 @@ build servers in AWS
 In Ec2 there are some instances which are in stopped state. So these
 instances are not required.
 
-The List of ec2 instances which are in stopped state are:
+## Stopped EC2 Instances
 
-  -----------------------------------------------------------------------
-  **Instance name**                   **Instance id**
-  ----------------------------------- -----------------------------------
-  sangha.disha.hirekarma.in           i-012b86b74aac9ab54 
+The following EC2 instances are currently in a stopped state:
 
-  unichain-verify                     i-021b59a02f3a6f073
-
-  unichain-certify                    i-0bfbba358aa66e08e
-
-  unichain-esignet                    i-0adfdde0a7213ae50 
-  -----------------------------------------------------------------------
+| Instance Name              | Instance ID            |
+|---------------------------|------------------------|
+| sangha.disha.hirekarma.in | i-012b86b74aac9ab54   |
+| unichain-verify           | i-021b59a02f3a6f073   |
+| unichain-certify          | i-0bfbba358aa66e08e   |
+| unichain-esignet          | i-0adfdde0a7213ae50   |
 
 
 **Approach**: Go to Aws Ec2 Instances List of instances will appear
-Select instances which are in stopped state Select Actions select
-terminate Click Terminate
+Select instances which are in stopped state
+ Select Actions --> selectterminate --> Click Terminate
 
 **Note:** Volumes also will be deleted along with instances
 
-Expected outcomes:
+**Expected outcomes**:
 
 -   After termination should not be able to see in ec2 list.
 
