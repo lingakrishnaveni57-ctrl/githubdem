@@ -34,6 +34,7 @@ The List of ec2 instances which are in stopped state are:
   unichain-esignet                    i-0adfdde0a7213ae50 
   -----------------------------------------------------------------------
 
+
 **Approach**: Go to Aws Ec2 Instances List of instances will appear
 Select instances which are in stopped state Select Actions select
 terminate Click Terminate
