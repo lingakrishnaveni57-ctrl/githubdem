@@ -1,5 +1,3 @@
----
-
 ## Document Information
 
 | Field        | Details |
@@ -8,8 +6,6 @@
 | Reviewed by | Loknath Panda |
 | Date        | 20-03-2026 |
 | Review Date | 21-03-2026 |
-
----
 
 
 **Title:** To Terminate the EC2 instances which are no longer required
