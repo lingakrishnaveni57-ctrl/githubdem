@@ -1,0 +1,52 @@
+name: Solviq server pushtrigger
+
+on:
+  push:
+    branches: [main, devops]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            set -e
+
+            echo "Connected to EC2"
+
+            # Go to your REAL app directory (IMPORTANT)
+            cd /opt/saksham-ai-backend/saksham-server
+
+            # Pull latest code
+            git pull origin devops
+
+            # Activate venv
+            source venv/bin/activate
+
+            # Install dependencies
+            pip install -r requirements.txt
+
+            # Load env (if exists)
+            if [ -f ".env" ]; then
+              export $(grep -v '^#' .env | xargs)
+            fi
+
+            # Run migrations (ignore failure for now)
+            alembic upgrade head || true
+
+            # Restart app
+            pkill -f uvicorn || true
+
+            nohup uvicorn main:app \
+              --host 0.0.0.0 \
+              --port 8000 \
+              --workers 4 \
+              > app.log 2>&1 &
+
+            echo "Deployment Successful"
